@@ -1,0 +1,4 @@
+2025-10-06 15:17:18,493 - INFO - Application started
+2025-10-06 15:17:18,493 - WARNING - Low memory warning
+2025-10-06 15:17:18,493 - ERROR - File not found error
+2025-10-06 15:17:18,493 - CRITICAL - Critical system failure

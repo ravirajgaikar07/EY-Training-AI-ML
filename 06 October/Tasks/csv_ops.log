@@ -1,0 +1,9 @@
+2025-10-06 16:53:42,739 - INFO - CSV Data
+2025-10-06 16:53:42,739 - INFO - Creating DataFrame
+2025-10-06 16:53:42,740 - INFO - Creating CSV
+2025-10-06 16:53:42,744 - INFO - Loading CSV
+2025-10-06 16:53:42,748 - INFO - Loading CSV
+2025-10-06 16:53:42,749 - INFO - printing total sales
+2025-10-06 16:53:42,755 - INFO - Product : Laptop | Total Sales : 140000
+2025-10-06 16:53:42,755 - INFO - Product : Mouse | Total Sales : 2500
+2025-10-06 16:53:42,756 - INFO - Product : Keyboard | Total Sales : 3600
