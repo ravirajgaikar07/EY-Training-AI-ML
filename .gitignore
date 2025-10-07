@@ -7,3 +7,5 @@
 venv/
 #idea foler
 .idea/
+__pycache__/
+*.pyc
