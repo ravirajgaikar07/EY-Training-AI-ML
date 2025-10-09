@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FastAPI Client</title>
+</head>
+<body>
+    <h1>Student List</h1>
+    <button onclick="fetchStudents()">Load Students</button>
+    <ul id="studentList"></ul>
+
+    <script>
+        async function fetchStudents() {
+            try {
+                const response = await fetch("http://localhost:8000/students");
+                const data = await response.json();
+
+                const list = document.getElementById("studentList");
+                list.innerHTML = ""; // Clear previous results
+
+                data.forEach(student => {
+                    const item = document.createElement("li");
+                    item.textContent = `ID: ${student.id}, Name: ${student.name}`;
+                    list.appendChild(item);
+                });
+            } catch (error) {
+                console.error("Error fetching students:", error);
+            }
+        }
+    </script>
+</body>
+</html>
