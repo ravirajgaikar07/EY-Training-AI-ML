@@ -1,0 +1,5 @@
+OrderID,CustomerID,ProductID,Quantity,OrderDate,Name,Country,Segment,ProductName,Category,Price,TotalAmount,OrderMonth
+O002,C002,P104,2,2024-10-13,Ali,UAE,Corporate,Smartphone,Electronics,600,1200,10
+O005,C005,P102,10,2024-10-17,Arjun,India,Corporate,Mouse,Accessories,20,200,10
+O003,C001,P103,3,2024-10-15,Neha,India,Individual,Keyboard,Accessories,35,105,10
+O009,C001,P105,2,2024-10-23,Neha,India,Individual,Headphones,Audio,50,100,10
