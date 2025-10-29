@@ -1,0 +1,150 @@
+# ============================================================
+# Memory-Tools.py — Conversational Mistral Agent (fully working)
+# ============================================================
+
+import os
+from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
+from langchain.memory import ConversationBufferMemory
+import requests
+
+# ------------------------------------------------------------
+# 1. Load environment variables
+# ------------------------------------------------------------
+load_dotenv()
+api_key = os.getenv("OPENROUTER_API_KEY")
+base_url = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
+weather_api_key = os.getenv("WEATHER_API_KEY")
+if not api_key:
+    raise ValueError("OPENROUTER_API_KEY not found in .env file")
+
+
+# ------------------------------------------------------------
+# 2. Initialize the Mistral model via OpenRouter
+# ------------------------------------------------------------
+llm = ChatOpenAI(
+    model="mistralai/mistral-7b-instruct",
+    temperature=0.4,
+    max_tokens=256,
+    api_key=api_key,
+    base_url=base_url,
+)
+
+
+# ------------------------------------------------------------
+# 3. Define helper tools
+# ------------------------------------------------------------
+def multiply(a: int, b: int) -> int:
+    """Multiply two integers."""
+    return a * b
+
+
+def greet(name: str) -> str:
+    """Return a friendly greeting."""
+    name = name.strip().replace('"', "").replace("'", "")
+    return f"Hello {name}, welcome to the AI Agent demo!"
+
+def weather(city: str) -> str:
+    url_1 = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=5&appid={weather_api_key}"
+    response_1 = requests.get(url_1)
+    lat=None
+    lon=None
+    if response_1.status_code == 200:
+        data_1 = response_1.json()
+        first_city = data_1[0]
+        lat = first_city["lat"]
+        lon = first_city["lon"]
+    else:
+        print(f"Error: {response.status_code}")
+    temperature = "Not Known"
+    if lat is not None and lon is not None:
+        url_2=f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={weather_api_key}"
+        response_2 = requests.get(url_2)
+        if response_2.status_code == 200:
+            data_2 = response_2.json()
+            temperature=data_2["main"]["temp"]
+        else:
+            print(f"Error: {response.status_code}")
+    return f"The temperature of {city.title()} is {temperature}."
+# ------------------------------------------------------------
+# 4. Initialize memory
+# ------------------------------------------------------------
+memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+
+
+# ------------------------------------------------------------
+# 5. Conversational loop
+# ------------------------------------------------------------
+print("\n=== Start chatting with your Agent ===")
+print("Type 'exit' to quit.\n")
+
+while True:
+    user_input = input("You: ").strip()
+    if user_input.lower() == "exit":
+        print("\nConversation ended.")
+        break
+
+    # Handle Multiply command
+    if user_input.lower().startswith("multiply"):
+        try:
+            parts = user_input.split()
+            a, b = int(parts[1]), int(parts[2])
+            result = multiply(a, b)
+            print("Agent:", result)
+            memory.save_context({"input": user_input}, {"output": str(result)})
+            continue
+        except Exception:
+            print("Agent: Please use 'Multiply a b' format.")
+            continue
+
+    # Handle Greet command
+    if user_input.lower().startswith("greet"):
+        try:
+            name = " ".join(user_input.split()[1:]).strip()
+            if not name:
+                print("Agent: Please specify a name. Example: greet Abdullah")
+                continue
+            greeting = greet(name)
+            print("Agent:", greeting)
+            memory.save_context({"input": user_input}, {"output": greeting})
+            continue
+        except Exception as e:
+            print("Agent: Could not greet properly:", e)
+            continue
+
+    # Handle name introduction
+    if "my name is" in user_input.lower():
+        name = user_input.split("is")[-1].strip()
+        memory.save_context({"input": user_input}, {"output": name})
+        print("Agent:", greet(name))
+        continue
+
+    # Handle asking for name
+    if "what" in user_input.lower() and "my name" in user_input.lower():
+        messages = memory.load_memory_variables({}).get("chat_history", [])
+        if messages:
+            last_output = messages[-1].content
+            print("Agent: You said your name is", last_output)
+        else:
+            print("Agent: I don't know your name yet.")
+        continue
+
+    if "what" in user_input.lower() and "weather" in user_input.lower():
+        try :
+            city = user_input.split("in")[-1].strip()
+            if not city:
+                print("Agent: Please specify a city name. Example: dubai")
+            city_weather = weather(city)
+            print(city_weather)
+            memory.save_context({"input": user_input}, {"output": city_weather})
+            continue
+        except Exception as e:
+            print("Agent: Could not find the weather:", e)
+            continue
+    # Default: use LLM
+    try:
+        response = llm.invoke(user_input)
+        print("Agent:", response.content)
+        memory.save_context({"input": user_input}, {"output": response.content})
+    except Exception as e:
+        print("Error:", e)
