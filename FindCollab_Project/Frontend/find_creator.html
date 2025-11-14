@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Find Creator | Collab Finder 🤝</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="container">
+  <nav>
+    <h1 class="logo">Collab Finder 🤝</h1>
+  </nav>
+
+  <div class="form-section">
+    <h2>💼 Find a Creator</h2>
+    <p>Enter your business details and get matched with the best creators for your brand 🔍</p>
+
+    <div class="form-card long-form">
+      <form id="findCreatorForm">
+        <div class="input-group">
+          <label>Business / Product Name</label>
+          <input type="text" id="brand_name" required />
+        </div>
+
+        <div class="input-group">
+          <label>Campaign Brief / Description</label>
+          <textarea id="brief" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn">Find Creators</button>
+      </form>
+
+      <p id="errorMsg" class="success" style="color:red; display:none;"></p>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+
+  <footer>
+    <p>© 2025 Collab Finder. All rights reserved.</p>
+  </footer>
+</div>
+
+<script>
+  // Save form data and redirect to results page
+  document.getElementById('findCreatorForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const brand = document.getElementById('brand_name').value.trim();
+    const brief = document.getElementById('brief').value.trim();
+
+    if (!brand || !brief) {
+      const em = document.getElementById('errorMsg');
+      em.textContent = 'Please fill both fields.';
+      em.style.display = 'block';
+      return;
+    }
+
+    // store into localStorage and navigate
+    localStorage.setItem('fc_brand_name', brand);
+    localStorage.setItem('fc_brief', brief);
+    // go to results page
+    window.location.href = 'top_creators.html';
+  });
+</script>
+
+</body>
+</html>

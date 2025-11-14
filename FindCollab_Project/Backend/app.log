@@ -1,0 +1,34 @@
+2025-11-14 11:18:31,401 | INFO | FastAPI server booting...
+2025-11-14 11:18:31,403 | INFO | Database connected.
+2025-11-14 11:18:31,428 | INFO | Loaded FAISS index.
+2025-11-14 11:24:20,586 | INFO | FastAPI server booting...
+2025-11-14 11:24:20,587 | INFO | Database connected.
+2025-11-14 11:24:20,614 | INFO | Loaded FAISS index.
+2025-11-14 11:24:52,908 | INFO | /send_creator_email called
+2025-11-14 11:24:55,639 | INFO | Sending email to prajgai12345@gmail.com
+2025-11-14 11:37:56,606 | INFO | FastAPI server booting...
+2025-11-14 11:37:56,607 | INFO | Database connected.
+2025-11-14 11:37:56,637 | INFO | Loaded FAISS index.
+2025-11-14 11:38:12,618 | INFO | /send_creator_email called
+2025-11-14 11:38:15,259 | INFO | Sending email to prajgai12345@gmail.com
+2025-11-14 11:44:55,370 | INFO | FastAPI server booting...
+2025-11-14 11:44:55,371 | INFO | Database connected.
+2025-11-14 11:44:55,400 | INFO | Loaded FAISS index.
+2025-11-14 11:45:03,291 | INFO | /send_creator_email called
+2025-11-14 11:45:05,780 | INFO | Sending email to prajgai12345@gmail.com
+2025-11-14 11:46:33,325 | INFO | FastAPI server booting...
+2025-11-14 11:46:33,326 | INFO | Database connected.
+2025-11-14 11:46:33,354 | INFO | Loaded FAISS index.
+2025-11-14 11:47:19,073 | INFO | FastAPI server booting...
+2025-11-14 11:47:19,073 | INFO | Database connected.
+2025-11-14 11:47:19,115 | INFO | Loaded FAISS index.
+2025-11-14 11:47:26,616 | INFO | /send_creator_email called
+2025-11-14 11:47:29,117 | INFO | Sending email to prajgai12345@gmail.com
+2025-11-14 11:47:51,146 | INFO | FastAPI server booting...
+2025-11-14 11:47:51,147 | INFO | Database connected.
+2025-11-14 11:47:51,173 | INFO | Loaded FAISS index.
+2025-11-14 11:47:51,718 | INFO | /send_creator_email called
+2025-11-14 11:47:54,397 | INFO | Sending email to prajgai12345@gmail.com
+2025-11-14 11:52:13,100 | INFO | FastAPI server booting...
+2025-11-14 11:52:13,102 | INFO | Database connected.
+2025-11-14 11:52:13,134 | INFO | Loaded FAISS index.

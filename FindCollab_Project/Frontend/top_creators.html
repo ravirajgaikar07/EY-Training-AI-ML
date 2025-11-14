@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Top Creators | Collab Finder 🤝</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<!-- TOAST NOTIFICATION -->
+<div id="toast"
+     style="
+       position: fixed;
+       bottom: 30px;
+       right: 30px;
+       padding: 14px 22px;
+       background: linear-gradient(135deg, #7b1fa2, #512da8);
+       color: white;
+       border-radius: 12px;
+       font-size: 0.95rem;
+       font-weight: 500;
+       box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+       display: none;
+       opacity: 0;
+       transition: opacity .4s ease, transform .4s ease;
+       transform: translateY(20px);
+       z-index: 999999;
+     ">
+</div>
+
+<body>
+
+<!-- LOADING OVERLAY -->
+<div id="loadingOverlay" style="display:none; position:fixed; inset:0; background:rgba(255,255,255,0.4); backdrop-filter:blur(6px); justify-content:center; align-items:center; z-index:9999;">
+  <div class="spinner"></div>
+</div>
+
+<div class="container">
+  <nav>
+    <h1 class="logo">Collab Finder 🤝</h1>
+  </nav>
+
+  <div class="form-section">
+    <h2>🔎 Top Creator Matches</h2>
+    <p id="summaryText">Loading matches...</p>
+
+    <div id="results" style="margin-top:28px;"></div>
+
+    <a href="index.html" class="back-link" style="margin-top:20px;">← Back to Home</a>
+  </div>
+
+  <footer>
+    <p>© 2025 Collab Finder. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- MODAL -->
+<div id="creatorModal"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45);
+            backdrop-filter:blur(5px); justify-content:center; align-items:center;
+            z-index:99999; padding:20px;">
+  <div class="form-card" id="modalContent" style="max-width:520px; text-align:left;"></div>
+</div>
+
+<script>
+ function showToast(message, success = true) {
+  const toast = document.getElementById("toast");
+  toast.innerHTML = message;
+
+  toast.style.background = success
+    ? "linear-gradient(135deg, #7b1fa2, #512da8)"
+    : "linear-gradient(135deg, #ff7043, #d32f2f)";
+
+  toast.style.display = "block";
+
+  setTimeout(() => {
+    toast.style.opacity = "1";
+    toast.style.transform = "translateY(0)";
+  }, 50);
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(20px)";
+    setTimeout(() => (toast.style.display = "none"), 400);
+  }, 2600);
+}
+
+const BASE_URL = "http://172.10.2.13:8000";
+
+/* ===== HELPERS ===== */
+function escapeHtml(s) {
+  if (s === undefined || s === null) return "";
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function showLoading() {
+  const o = document.getElementById("loadingOverlay");
+  if (o) o.style.display = "flex";
+}
+function hideLoading() {
+  const o = document.getElementById("loadingOverlay");
+  if (o) o.style.display = "none";
+}
+
+/* ===== SEND EMAIL BUTTON ===== */
+async function sendEmailToCreator(username) {
+  showLoading();
+
+  const brand = localStorage.getItem("fc_brand_name");
+  const brief = localStorage.getItem("fc_brief");
+
+  try {
+    const res = await fetch(`${BASE_URL}/send_creator_email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_name: username,
+        brand_name: brand,
+        brand_brief: brief
+      })
+    });
+
+    const data = await res.json();
+    hideLoading();
+
+    if (data.status === "sent") {
+      showToast("📩 Email sent successfully!", true);
+    } else {
+      showToast("⚠ Could not send email. Check backend!", false);
+    }
+  } catch (err) {
+    hideLoading();
+    alert("❌ Network error while sending email.");
+  }
+}
+
+/* ===== MODAL ===== */
+function openModalFromEncoded(encoded) {
+  try {
+    const json = decodeURIComponent(encoded);
+    const obj = JSON.parse(json);
+    openModal(obj);
+  } catch (err) {
+    console.error("openModalFromEncoded error:", err, encoded);
+    alert("Could not open modal (bad data). Check console.");
+  }
+}
+
+function openModal(c) {
+  if (!c) return;
+
+  const modal = document.getElementById("creatorModal");
+  const box = document.getElementById("modalContent");
+
+  const display_name = escapeHtml(c.display_name || "Unknown");
+  const user_name = escapeHtml(c.user_name || "");
+  const niches = escapeHtml(c.niches || "");
+  const match = c.matching_percentage !== undefined ? Number(c.matching_percentage).toFixed(2) + "%" : "N/A";
+  const why_fit = escapeHtml(c.why_fit || "No explanation available.");
+
+  box.innerHTML = `
+    <h2 style="color:#4a148c; margin-bottom:8px;">${display_name}</h2>
+
+    <p><strong>Username:</strong> ${user_name ? "@" + user_name : "—"}</p>
+    <p><strong>Niche:</strong> ${niches}</p>
+    <p><strong>Match Score:</strong> ${match}</p>
+
+    <div style="margin-top:14px;">
+      <p style="font-weight:600; color:#4a148c; margin-bottom:6px;">Why this creator is a good fit</p>
+      <p style="color:#333; line-height:1.5; white-space:pre-wrap;">${why_fit}</p>
+    </div>
+
+    <div style="margin-top:18px; display:flex; gap:10px; justify-content:flex-end;">
+      <button class="btn" onclick="sendEmailToCreator('${user_name}')">Send Email</button>
+      <button class="btn" onclick="closeModal()">Close</button>
+    </div>
+  `;
+
+  modal.style.display = "flex";
+}
+
+function closeModal() {
+  const modal = document.getElementById("creatorModal");
+  if (modal) modal.style.display = "none";
+}
+
+/* ===== RENDER ===== */
+function renderResults(matches) {
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
+
+  matches.forEach((c) => {
+    const card = document.createElement("div");
+    card.className = "form-card";
+    card.style.marginBottom = "18px";
+    card.style.cursor = "pointer";
+
+    try {
+      const encoded = encodeURIComponent(JSON.stringify(c));
+      card.dataset.payload = encoded;
+    } catch {
+      card.dataset.payload = "";
+    }
+
+    const display = escapeHtml(c.display_name);
+    const user = escapeHtml(c.user_name);
+    const niches = escapeHtml(c.niches);
+    const match = Number(c.matching_percentage).toFixed(2) + "%";
+
+    card.innerHTML = `
+      <h3 style="color:#4a148c; margin-bottom:6px;">${display}</h3>
+      <p><strong>Username:</strong> @${user}</p>
+      <p><strong>Niche:</strong> ${niches}</p>
+      <p><strong>Match:</strong> ${match}</p>
+    `;
+
+    card.addEventListener("click", function () {
+      openModalFromEncoded(this.dataset.payload);
+    });
+
+    resultsDiv.appendChild(card);
+  });
+}
+
+/* ===== MAIN ===== */
+(async function main() {
+  const brand = localStorage.getItem("fc_brand_name");
+  const brief = localStorage.getItem("fc_brief");
+
+  const summary = document.getElementById("summaryText");
+  summary.innerHTML = `Top matches for <strong>${escapeHtml(brand)}</strong>`;
+
+  showLoading();
+  try {
+    const res = await fetch(`${BASE_URL}/match_creators`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ brand_name: brand, brief })
+    });
+
+    const payload = await res.json();
+    hideLoading();
+
+    if (!res.ok || !payload.matches) {
+      document.getElementById("results").innerHTML =
+        `<div class="form-card"><h3>Error fetching creators.</h3></div>`;
+      return;
+    }
+
+    renderResults(payload.matches);
+
+  } catch (err) {
+    hideLoading();
+    document.getElementById("results").innerHTML =
+      `<div class="form-card"><h3>Network error. Try again.</h3></div>`;
+  }
+})();
+</script>
+
+</body>
+</html>
