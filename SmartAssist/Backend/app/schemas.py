@@ -8,7 +8,6 @@ class UploadResponse(BaseModel):
 
 class QueryRequest(BaseModel):
     query: str
-    current_agent: str
 
 class QueryResponse(BaseModel):
     answer: str

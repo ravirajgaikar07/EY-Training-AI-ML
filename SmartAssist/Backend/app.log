@@ -1,0 +1,150 @@
+2025-11-19 00:54:43,538 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 00:54:43,548 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 00:54:43,635 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 00:54:43,635 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 00:56:14,592 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 00:56:14,593 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 00:56:14,603 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 00:56:14,609 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 00:56:26,608 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 00:56:26,610 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 00:56:26,621 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 00:56:26,621 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 00:58:18,205 - INFO - app - Creating new FAISS index at faiss_indexes/faq.index
+2025-11-19 00:58:18,205 - INFO - app - Creating new FAISS index at faiss_indexes/manual.index
+2025-11-19 00:58:18,226 - INFO - app - Creating new FAISS index at faiss_indexes/faq.index
+2025-11-19 00:58:18,227 - INFO - app - Creating new FAISS index at faiss_indexes/manual.index
+2025-11-19 01:01:40,955 - INFO - app - Received upload_docs request with 2 files
+2025-11-19 01:01:40,963 - INFO - app - Processing file: FAQ.pdf
+2025-11-19 01:01:40,963 - WARNING - app - Unsupported file type attempted: FAQ.pdf
+2025-11-19 01:03:30,387 - INFO - app - Creating new FAISS index at faiss_indexes/faq.index
+2025-11-19 01:03:30,388 - INFO - app - Creating new FAISS index at faiss_indexes/manual.index
+2025-11-19 01:03:30,396 - INFO - app - Creating new FAISS index at faiss_indexes/faq.index
+2025-11-19 01:03:30,396 - INFO - app - Creating new FAISS index at faiss_indexes/manual.index
+2025-11-19 01:03:58,574 - INFO - app - Received upload_docs request with 2 files
+2025-11-19 01:03:58,589 - INFO - app - Processing file: FAQ.pdf
+2025-11-19 01:03:58,589 - INFO - app - Processing file: Manual.pdf
+2025-11-19 01:03:58,589 - INFO - app - Starting ingestion for FAQ PDFs: 1 files
+2025-11-19 01:03:58,589 - INFO - app - Starting FAQ ingestion for 1 files
+2025-11-19 01:03:58,826 - INFO - app - Text split into 7 chunks
+2025-11-19 01:03:58,832 - INFO - app - File FAQ.pdf split into 7 chunks
+2025-11-19 01:04:01,961 - INFO - app - FAISS indexes and metadata saved successfully
+2025-11-19 01:04:01,962 - INFO - app - FAQ ingestion completed
+2025-11-19 01:04:01,962 - INFO - app - Finished ingestion for FAQ PDFs
+2025-11-19 01:04:01,962 - INFO - app - Starting ingestion for Manual PDFs: 1 files
+2025-11-19 01:04:01,963 - INFO - app - Starting Manual ingestion for 1 files
+2025-11-19 01:04:02,174 - INFO - app - Text split into 2 chunks
+2025-11-19 01:04:02,175 - INFO - app - File Manual.pdf split into 2 chunks
+2025-11-19 01:04:02,967 - INFO - app - FAISS indexes and metadata saved successfully
+2025-11-19 01:04:02,967 - INFO - app - Manual ingestion completed
+2025-11-19 01:04:02,967 - INFO - app - Finished ingestion for Manual PDFs
+2025-11-19 01:04:02,968 - INFO - app - File processing completed successfully
+2025-11-19 01:06:49,405 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 01:06:49,406 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 01:06:49,419 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 01:06:49,420 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 01:07:04,941 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 01:07:04,941 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 01:07:04,956 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 01:07:04,956 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 01:07:21,786 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 01:07:21,795 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 01:07:21,806 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 01:07:21,806 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 01:07:40,547 - INFO - app - Received query: what is single agent vs multi agent
+2025-11-19 01:07:40,549 - INFO - app - Running workflow with 1 messages
+2025-11-19 01:07:41,625 - INFO - app - IntentClassifier output: faq
+2025-11-19 01:07:41,625 - INFO - app - Routing intent: faq
+2025-11-19 01:07:41,625 - INFO - app - Determined intent: faq
+2025-11-19 01:07:42,299 - INFO - app - Retrieved 4 FAQ chunks for query
+2025-11-19 01:07:42,301 - ERROR - app - RAGFAQAgent answer error: 2 validation errors for HumanMessage
+content.str
+  Input should be a valid string [type=string_type, input_value={'role': 'user', 'content...e agent vs multi agent"}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+content.list[union[str,dict[any,any]]]
+  Input should be a valid list [type=list_type, input_value={'role': 'user', 'content...e agent vs multi agent"}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/list_type
+2025-11-19 01:07:42,301 - INFO - app - FAQ Agent response generated
+2025-11-19 01:07:42,302 - INFO - app - Generated response: Error generating FAQ answer.
+2025-11-19 01:10:38,000 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 01:10:38,002 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 01:10:38,042 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 01:10:38,044 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 01:10:48,277 - INFO - app - Received query: what is single agent vs multi agent
+2025-11-19 01:10:48,278 - INFO - app - Running workflow with 1 messages
+2025-11-19 01:10:50,710 - INFO - app - IntentClassifier output: faq
+2025-11-19 01:10:50,720 - INFO - app - Routing intent: faq
+2025-11-19 01:10:50,720 - INFO - app - Determined intent: faq
+2025-11-19 01:10:51,241 - INFO - app - Retrieved 4 FAQ chunks for query
+2025-11-19 01:10:53,094 - INFO - app - RAGFAQAgent answer generated
+2025-11-19 01:10:53,095 - INFO - app - FAQ Agent response generated
+2025-11-19 01:10:53,095 - INFO - app - Generated response: A single-agent system involves one autonomous agent operating independently, while a multi-agent system consists of multiple interacting autonomous agents. Single-agent systems are simpler, focusing on an individual agent's reasoning and action, and have minimal interaction with other agents. Multi-agent systems are more complex, involving inter-agent communication, coordination, and emergent behaviors, offering greater flexibility for distributed, large-scale problems.
+2025-11-19 01:11:32,641 - INFO - app - Received query: i want to buy multi agent system
+2025-11-19 01:11:32,641 - INFO - app - Running workflow with 3 messages
+2025-11-19 01:11:33,589 - INFO - app - IntentClassifier output: faq
+2025-11-19 01:11:33,590 - INFO - app - Routing intent: faq
+2025-11-19 01:11:33,590 - INFO - app - Determined intent: faq
+2025-11-19 01:11:33,974 - INFO - app - Retrieved 4 FAQ chunks for query
+2025-11-19 01:11:35,629 - INFO - app - RAGFAQAgent answer generated
+2025-11-19 01:11:35,638 - INFO - app - FAQ Agent response generated
+2025-11-19 01:11:35,639 - INFO - app - Generated response: I am an AI assistant, and I cannot facilitate purchases. However, I can provide information about multi-agent systems. Based on the provided documents, multi-agent systems involve multiple interacting autonomous agents that can communicate and coordinate to solve complex, distributed problems. They offer flexibility and can be applied in areas like customer service (e.g., intelligent chatbots) and mobility (e.g., coordinating autonomous vehicles).
+2025-11-19 01:11:58,054 - INFO - app - Received query: no i want it any how
+2025-11-19 01:11:58,056 - INFO - app - Running workflow with 5 messages
+2025-11-19 01:11:59,172 - INFO - app - IntentClassifier output: escalation
+2025-11-19 01:11:59,173 - INFO - app - Routing intent: escalation
+2025-11-19 01:11:59,173 - INFO - app - Determined intent: escalation
+2025-11-19 01:11:59,173 - INFO - app - EscalationSupervisor waiting for human agent response...
+2025-11-19 01:12:19,388 - INFO - app - Database initialized successfully at tickets.db
+2025-11-19 01:12:24,498 - INFO - app - Ticket created: T-e652b316
+2025-11-19 01:12:24,549 - INFO - app - Ticket raised by EscalationSupervisor
+2025-11-19 01:12:24,601 - INFO - app - Escalation Supervisor response generated
+2025-11-19 01:12:24,672 - INFO - app - Generated response: Raising Ticket for You {'answer': 'Ticket : T-e652b316 has been created for you'}
+2025-11-19 01:12:45,446 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 01:15:56,659 - INFO - app - Received query: how to create a agent
+2025-11-19 01:15:56,664 - INFO - app - Running workflow with 7 messages
+2025-11-19 01:15:57,946 - INFO - app - IntentClassifier output: faq
+2025-11-19 01:15:57,947 - INFO - app - Routing intent: faq
+2025-11-19 01:15:57,947 - INFO - app - Determined intent: faq
+2025-11-19 01:15:59,254 - INFO - app - Retrieved 4 FAQ chunks for query
+2025-11-19 01:16:01,119 - INFO - app - RAGFAQAgent answer generated
+2025-11-19 01:16:01,151 - INFO - app - FAQ Agent response generated
+2025-11-19 01:16:01,151 - INFO - app - Generated response: I cannot provide a detailed guide on creating an agent. However, I can provide information on agent systems.
+
+Agent systems, both single and multi-agent, are designed to perceive their environment and take actions to achieve specific goals. They are used in various sectors, including healthcare, mobility, and customer service, by providing intelligent, adaptable, and efficient solutions.
+
+*   **Autonomous Vehicles (AVs):** Each AV is a complex single-agent system with multi-agent capabilities for inter-vehicle communication (V2V) and infrastructure communication (V2I).
+*   **Intelligent Chatbots and Virtual Assistants:** Agents handle customer queries, provide information, and perform tasks 24/7, improving response times.
+*   **Traffic Management:** Multi-agent systems can optimize traffic light timings and predict traffic flow.
+2025-11-19 01:19:46,573 - INFO - app - Received query: I have an error in creating an agent
+2025-11-19 01:19:46,575 - INFO - app - Running workflow with 9 messages
+2025-11-19 01:19:47,722 - INFO - app - IntentClassifier output: troubleshoot
+2025-11-19 01:19:47,722 - INFO - app - Routing intent: troubleshoot
+2025-11-19 01:19:47,724 - INFO - app - Determined intent: troubleshoot
+2025-11-19 01:19:48,126 - INFO - app - Retrieved 2 manual chunks for query
+2025-11-19 01:19:48,127 - ERROR - app - TroubleshooterAgent answer error: 2 validation errors for HumanMessage
+content.str
+  Input should be a valid string [type=string_type, input_value={'role': 'user', 'content...r in creating an agent"}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+content.list[union[str,dict[any,any]]]
+  Input should be a valid list [type=list_type, input_value={'role': 'user', 'content...r in creating an agent"}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/list_type
+2025-11-19 01:19:48,127 - INFO - app - Troubleshooter Agent response generated
+2025-11-19 01:19:48,128 - INFO - app - Generated response: Error generating troubleshooting answer.
+2025-11-19 01:24:17,645 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 01:24:17,646 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 01:24:17,667 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 01:24:17,668 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 01:24:26,432 - INFO - app - Received query: I have an error in creating an agent
+2025-11-19 01:24:26,433 - INFO - app - Running workflow with 1 messages
+2025-11-19 01:24:27,665 - INFO - app - IntentClassifier output: troubleshoot
+2025-11-19 01:24:27,666 - INFO - app - Routing intent: troubleshoot
+2025-11-19 01:24:27,667 - INFO - app - Determined intent: troubleshoot
+2025-11-19 01:24:28,350 - INFO - app - Retrieved 2 manual chunks for query
+2025-11-19 01:24:32,051 - INFO - app - TroubleshooterAgent answer generated
+2025-11-19 01:24:32,260 - INFO - app - Troubleshooter Agent response generated
+2025-11-19 01:24:32,311 - INFO - app - Generated response: This query is too vague to provide specific troubleshooting steps. To help me diagnose the problem, please provide more information, such as:
+
+*   **What kind of agent are you trying to create?** (e.g., AI agent, software agent, etc.)
+*   **What software or platform are you using?**
+*   **What is the exact error message you are receiving?**
+*   **What steps have you already taken to try and resolve the issue?**
