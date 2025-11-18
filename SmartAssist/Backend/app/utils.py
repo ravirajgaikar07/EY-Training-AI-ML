@@ -32,3 +32,4 @@ def chunk_text(text: str, max_tokens=300, overlap=50):
         c["id"] = i
 
     return chunks
+

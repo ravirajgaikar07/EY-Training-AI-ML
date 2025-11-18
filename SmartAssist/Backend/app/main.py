@@ -2,14 +2,13 @@ from fastapi import FastAPI, UploadFile, File, Form, Request,HTTPException
 from typing import List
 from .ingest import ingest_and_store_embeddings_Manual, ingest_and_store_embeddings_FAQ
 from .graph import run_workflow
-
-from .schemas import QueryRequest, QueryResponse, UploadResponse
+from .schemas import QueryResponse, UploadResponse
 from dotenv import load_dotenv
 import os
 load_dotenv()
 os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
-
 app = FastAPI()
+state = {"is_escalation": False}
 @app.post("/upload_docs", response_model=UploadResponse)
 async def upload_docs(files: List[UploadFile] = File(...)):
     faq_files = []
@@ -55,6 +54,19 @@ async def query_endpoint(req):
         answer=res["answer"],
         conversation_history=conversation_history
     )
+@app.post("/human/reply")
+def human_reply(reply: str):
+    if not conversation_history:
+        return {"error": "invalid convo"}
+    conversation_history.append({"role": "agent", "text": reply})
+    return {"history": "conversation_history"}
+
+@app.get("/check")
+def any_changes():
+    if state["is_escalation"]:
+        return {"status": "True",
+                "history": conversation_history}
+    return {"status": "False"}
 
 
 

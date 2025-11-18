@@ -1,32 +1,27 @@
 from .agents import IntentRouter, RAGFAQAgent, TroubleshooterAgent, EscalationSupervisor, TicketingAgent
-from .agents import llm_model
-from typing import Dict, Any, List
-
+from .main import state
 router = IntentRouter()
-faq_agent = RAGFAQAgent(llm_model)
+faq_agent = RAGFAQAgent()
 troubleshooter = TroubleshooterAgent()
 supervisor = EscalationSupervisor()
 ticketing = TicketingAgent()
 
 async def run_workflow(messages: list):
-
-
-    intent, _ = await router.route(messages)
+    intent = await router.route(messages)
 
     if "faq" in intent:
         res = await faq_agent.answer(messages)
-        return {"answer": res["answer"], "sources": res.get("sources", [])}
+        return {"answer": res["answer"]}
 
     if "troubleshooting" in intent:
-        cont = await troubleshooter.continue_convo(messages)
-        return {"answer": cont["next_question"] if not cont.get("done") else cont["answer"]}
+        res = await troubleshooter.answer(messages)
+        return {"answer": res["answer"]}
 
     if "escalation" in intent:
-        res = await supervisor.evaluate(messages)
-        return {"answer": f"Routing to {res} support regarding your query."}
+        state["is_escalation"] = True
+        res = await supervisor.answer(messages)
+        return {"answer": res["answer"]}
 
-    if "ticketing" in intent:
-        return {}
-
-    res = await supervisor.evaluate(messages)
-    return {"answer": res["answer"], "sources": res.get("sources", [])}
+    state["is_escalation"] = True
+    res = await supervisor.answer(messages)
+    return {"answer": res["answer"]}
