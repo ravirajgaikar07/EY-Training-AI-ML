@@ -1,1 +1,1 @@
-state = {"is_escalation": False}
+state = {"conversation_history": [], "is_escalation": False}

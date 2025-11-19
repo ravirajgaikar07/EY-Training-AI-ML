@@ -9,6 +9,7 @@ from .db import init_db
 from langchain_google_genai import GoogleGenerativeAI
 from .ingest import FAQ_METADATA, MANUAL_METADATA, embedding_model
 from .logger import logger
+import asyncio
 
 
 # ---------------------------
@@ -145,6 +146,29 @@ class TroubleshooterAgent:
             "You are a precise troubleshooting assistant. Use only manual sources.\n"
             f"Conversation History:\n{history_text}\nManual Sources:\n" + "\n".join(source_texts) + "\n\nQuestion: " + query
         )
+
+        manual_text = "\n".join(source_texts)
+
+        prompt = f"""
+        You are an expert technical support assistant. Use only the provided manual content to generate your response.
+        Your response should be:
+
+        1. Clear and concise.
+        2. Step-by-step if troubleshooting steps are available.
+        3. Polite, professional, and reassuring.
+        4. Avoid listing raw chunk references; instead, integrate the content into natural sentences.
+        5. If the manual lacks exact information, suggest the most reasonable next steps and reassure the user.
+
+        Conversation History:
+        {history_text}
+
+        Manual Sources:
+        {manual_text}
+
+        Question:
+        {query}
+        """
+
         try:
             resp = llm_model.generate([prompt])
             text = resp.generations[0][0].text.strip()
@@ -161,7 +185,7 @@ class EscalationSupervisor:
     def __init__(self, conversation_history: List[Dict[str, str]]):
         self.conversation_history = conversation_history
 
-    def answer(self, conversation_history: List[dict]) -> Dict[str, str]:
+    async def answer(self, conversation_history: List[dict]) -> Dict[str, str]:
         logger.info("EscalationSupervisor waiting for human agent response...")
         initial_len = len(self.conversation_history)
         for _ in range(20):
@@ -170,11 +194,19 @@ class EscalationSupervisor:
                 if last_msg.get("role") == "agent":
                     logger.info("Human agent responded")
                     return {"answer": last_msg["text"]}
-            time.sleep(1)
+            await asyncio.sleep(1)  # non-blocking
         Ticketer = TicketingAgent(conversation_history)
         result = Ticketer.create_ticket(conversation_history)
         logger.info("Ticket raised by EscalationSupervisor")
-        return {"answer": f"Raising Ticket for You {result}"}
+        answer=result["answer"]
+        return {
+            "answer": (
+                f"Our team is currently reviewing your issue. "
+                f"A ticket has been created: {answer['answer']}. "
+                f"One of our experts will get back to you shortly. "
+            )
+        }
+
 
 # ---------------------------
 # Ticketing Agent
@@ -213,7 +245,7 @@ class TicketingAgent:
             conn.commit()
             conn.close()
             logger.info("Ticket created: %s", ticket_id)
-            return {"answer": f"Ticket : {ticket_id} has been created for you"}
+            return {"answer": f"ticket id : {ticket_id}"}
         except Exception as e:
             logger.error("TicketingAgent.create_ticket error: %s", str(e))
             return {"answer": "Error creating ticket."}

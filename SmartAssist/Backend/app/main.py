@@ -1,20 +1,26 @@
 import os
 from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 from dotenv import load_dotenv
 from .ingest import ingest_and_store_embeddings_Manual, ingest_and_store_embeddings_FAQ
 from .graph import run_workflow
-from .schemas import QueryResponse, UploadResponse, QueryRequest
+from .schemas import HumanRequest, QueryResponse, UploadResponse, QueryRequest
 from .logger import logger
 from .state import state
-
 # ---------------------------
 # Environment Setup
 # ---------------------------
 load_dotenv()
 os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 app = FastAPI()
-conversation_history: List[dict] = []
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # ---------------------------
 # Upload API
@@ -74,21 +80,23 @@ async def upload_docs(files: List[UploadFile] = File(...)):
 async def query_endpoint(req: QueryRequest):
     logger.info("Received query: %s", req.query)
 
-    conversation_history.append({"role": "user", "text": req.query})
+    state["conversation_history"].append({"role": "user", "text": req.query})
 
     try:
-        res = await run_workflow(conversation_history)
+        # RUN WORKFLOW IN BACKGROUND THREAD
+        res = await run_workflow(state["conversation_history"])
     except Exception as e:
         logger.error("Workflow error: %s", str(e))
         raise HTTPException(status_code=500, detail="Workflow execution failed")
 
-    conversation_history.append({"role": "agent", "text": res["answer"]})
+    if state["conversation_history"][-1]["role"] != "agent":
+        state["conversation_history"].append({"role": "agent", "text": res["answer"]})
 
     logger.info("Generated response: %s", res["answer"])
 
     return QueryResponse(
         answer=res["answer"],
-        conversation_history=conversation_history
+        conversation_history=state["conversation_history"]
     )
 
 
@@ -96,14 +104,14 @@ async def query_endpoint(req: QueryRequest):
 # Human Reply API
 # ---------------------------
 @app.post("/human/reply")
-def human_reply(reply: str):
-    logger.info("Human reply received: %s", reply)
+def human_reply(req: HumanRequest):
+    logger.info("Human reply received: %s", req.reply)
 
-    if not conversation_history:
+    if not state["conversation_history"]:
         logger.warning("Human reply attempted with empty conversation history")
         return {"error": "invalid convo"}
 
-    conversation_history.append({"role": "agent", "text": reply})
+    state["conversation_history"].append({"role": "agent", "text": req.reply})
 
     logger.info("Human reply added to conversation history")
 
@@ -118,6 +126,12 @@ def any_changes():
     logger.info("Check endpoint hit. Escalation status: %s", state['is_escalation'])
 
     if state["is_escalation"]:
-        return {"status": "True", "history": conversation_history}
+        return {"status": True, "history": state["conversation_history"]}
 
-    return {"status": "False"}
+    return {"status": False}
+
+@app.post("/reset_history")
+def reset_history():
+    state["conversation_history"].clear()
+    state["is_escalation"] = False
+    return {"status": True, "history": state["conversation_history"]}
