@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SmartAssist — Support Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="support.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">SmartAssist</div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="chat.html">Chat</a>
+    </div>
+</nav>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- MAIN -->
+<div class="support-wrap">
+
+    <header class="support-header">
+        <div class="hdr-left">
+            <div class="hdr-title">Support Panel</div>
+            <div class="hdr-sub">Your IT Support Team</div>
+        </div>
+
+        <div class="hdr-actions">
+            <button id="resetBtn">Reset History</button>
+            <div id="statusBadge" class="status off">No Escalation</div>
+        </div>
+    </header>
+
+    <main class="support-main">
+        <section class="conv-panel">
+            <div id="convBody" class="conv-body">
+                <div class="empty-note" id="emptyNote">
+                    No active escalation. Waiting for the system to escalate a conversation...
+                </div>
+            </div>
+
+            <footer class="conv-footer">
+                <input id="humanInput" type="text" placeholder="Type your reply as human IT..." disabled />
+                <button id="sendBtn" class="primary" disabled>Send</button>
+            </footer>
+        </section>
+    </main>
+
+</div>
+
+<script>
+/* ---------- CONFIG ---------- */
+const API_BASE = "http://172.10.2.13:8000";
+const POLL_INTERVAL = 2500;
+
+/* ---------- HELPERS: toast ---------- */
+function showToast(msg, type="success"){
+    const t = document.getElementById("toast");
+    t.innerText = msg;
+    if(type === "error"){
+        t.style.background = "linear-gradient(135deg, #ff6b6b, #ff8e8e)";
+    } else {
+        t.style.background = "linear-gradient(135deg, var(--accent1), var(--accent2))";
+    }
+    t.classList.add("show");
+    setTimeout(()=> t.classList.remove("show"), 3000);
+}
+
+/* ---------- UI refs ---------- */
+const convBody = document.getElementById("convBody");
+const emptyNote = document.getElementById("emptyNote");
+const statusBadge = document.getElementById("statusBadge");
+const humanInput = document.getElementById("humanInput");
+const sendBtn = document.getElementById("sendBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+let lastHistory = [];      // last fetched history snapshot
+
+/* ---------- Render conversation ---------- */
+function renderHistory(history) {
+    convBody.innerHTML = ""; // clear
+    if (!history || history.length === 0) {
+        emptyNote.style.display = "block";
+        return;
+    }
+    emptyNote.style.display = "none";
+
+    history.forEach(msg => {
+        const el = document.createElement("div");
+        el.classList.add("msg-row");
+
+        const bubble = document.createElement("div");
+        bubble.classList.add("bubble");
+
+        if (msg.role === "user") {
+            bubble.classList.add("user-bubble");
+        } else {
+            bubble.classList.add("agent-bubble"); // agent + human both appear here
+        }
+
+        bubble.innerText = msg.text;
+        el.appendChild(bubble);
+        convBody.appendChild(el);
+    });
+
+    // auto-scroll
+    convBody.scrollTop = convBody.scrollHeight;
+}
+
+/* ---------- Polling /check ---------- */
+async function fetchCheck() {
+    try {
+        const r = await fetch(`${API_BASE}/check`);
+        if (!r.ok) throw new Error("check failed");
+        const j = await r.json();
+
+        if (j.status === true || j.status === "True" || j.status === "true") {
+            statusBadge.classList.remove("off");
+            statusBadge.classList.add("on");
+            statusBadge.innerText = "Escalation Active";
+
+            if (j.history && Array.isArray(j.history)) {
+                // Only update if changed
+                if (JSON.stringify(lastHistory) !== JSON.stringify(j.history)) {
+                    lastHistory = j.history;
+                    renderHistory(j.history);
+                }
+            }
+
+            humanInput.disabled = false;
+            sendBtn.disabled = false;
+
+        } else {
+            statusBadge.classList.remove("on");
+            statusBadge.classList.add("off");
+            statusBadge.innerText = "No Escalation";
+
+            humanInput.disabled = true;
+            sendBtn.disabled = true;
+
+            lastHistory = [];
+            renderHistory([]);
+        }
+    } catch (err) {
+        showToast("Server unreachable", "error");
+    }
+}
+
+/* ---------- Send human reply ---------- */
+async function sendHumanReply() {
+    const text = humanInput.value.trim();
+    if (!text) return;
+
+    // disable button temporarily
+    sendBtn.disabled = true;
+
+    try {
+        const r = await fetch(`${API_BASE}/human/reply`, {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({ reply: text })   // <-- Correct body
+        });
+
+        if (!r.ok) {
+            showToast("Reply failed", "error");
+        } else {
+            showToast("Reply sent");
+            humanInput.value = "";
+
+            // DO NOT add bubble manually (prevents duplicates)
+            // Let polling update the UI
+            await fetchCheck();
+        }
+
+    } catch (err) {
+        showToast("Reply failed", "error");
+    }
+
+    sendBtn.disabled = false;
+}
+
+/* ---------- Reset history ---------- */
+async function resetHistory() {
+    if (!confirm("Reset conversation history?")) return;
+
+    try {
+        await fetch(`${API_BASE}/reset_history`, { method: "POST" });
+        showToast("History cleared");
+        lastHistory = [];
+        renderHistory([]);
+        await fetchCheck();
+    } catch (err) {
+        showToast("Reset failed", "error");
+    }
+}
+
+/* ---------- Bind Events ---------- */
+
+// BUTTON CLICK (only once)
+sendBtn.addEventListener("click", sendHumanReply);
+
+// ENTER KEY (prevent default so double send doesn’t happen)
+humanInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();  // 🔥 STOP double-send
+        sendHumanReply();
+    }
+});
+
+resetBtn.addEventListener("click", resetHistory);
+
+/* ---------- Start Polling ---------- */
+fetchCheck();
+setInterval(fetchCheck, POLL_INTERVAL);
+
+</script>
+
+</body>
+</html>

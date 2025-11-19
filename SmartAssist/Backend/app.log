@@ -3522,3 +3522,432 @@ I recommend checking the following sections in the troubleshooting manual for mo
 2025-11-19 12:41:48,526 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
 2025-11-19 12:44:34,179 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
 2025-11-19 12:44:34,179 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 12:46:03,188 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 12:46:03,188 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 12:46:03,201 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 12:46:03,201 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 12:46:23,441 - INFO - app - Received query: The lead scoring workflow is not triggering even though all fields are filled.
+2025-11-19 12:46:23,447 - INFO - app - Running workflow with 1 messages
+2025-11-19 12:46:24,522 - INFO - app - IntentClassifier output: troubleshoot
+2025-11-19 12:46:24,522 - INFO - app - Routing intent: troubleshoot
+2025-11-19 12:46:24,522 - INFO - app - Determined intent: troubleshoot
+2025-11-19 12:46:24,996 - INFO - app - Retrieved 4 manual chunks for query
+2025-11-19 12:46:27,297 - INFO - app - TroubleshooterAgent answer generated
+2025-11-19 12:46:27,299 - INFO - app - Troubleshooter Agent response generated
+2025-11-19 12:46:27,299 - INFO - app - Generated response: I understand that your lead scoring workflow is not triggering even though all the fields are filled. Let's troubleshoot this.
+
+Here are some possible causes and steps to resolve this issue:
+
+1.  **Verify Form Fields:** It's possible that the workflow isn't triggering because it's not detecting the data in the form fields as expected. Double-check that all the required form fields are correctly filled and properly mapped to the workflow.
+2.  **Adjust Score Threshold:** The score threshold for triggering the workflow might be set too high. Try adjusting the score threshold to a lower value to see if that resolves the issue.
+
+If the lead scoring workflow continues to fail, consider escalating to the human support channel, as described in the manual.
+2025-11-19 12:46:46,842 - INFO - app - Received query: Why isn’t my platform processing uploaded PDFs?
+2025-11-19 12:46:46,843 - INFO - app - Running workflow with 3 messages
+2025-11-19 12:46:47,982 - INFO - app - IntentClassifier output: troubleshoot
+2025-11-19 12:46:47,982 - INFO - app - Routing intent: troubleshoot
+2025-11-19 12:46:47,982 - INFO - app - Determined intent: troubleshoot
+2025-11-19 12:46:48,403 - INFO - app - Retrieved 4 manual chunks for query
+2025-11-19 12:46:50,273 - INFO - app - TroubleshooterAgent answer generated
+2025-11-19 12:46:50,273 - INFO - app - Troubleshooter Agent response generated
+2025-11-19 12:46:50,273 - INFO - app - Generated response: I understand you're having trouble processing uploaded PDFs on the platform.
+
+Based on the troubleshooting manual, here's what might be happening and how to address it:
+
+*   It's possible the platform is having trouble distinguishing between different types of documents. Try separating general information PDFs from technical documents.
+
+If the issue persists after trying this, it might be something that requires more in-depth investigation. In that case, please escalate the issue using the human support channel as described in the manual. We'll be happy to assist you further!
+2025-11-19 14:27:24,754 - INFO - app - Received upload_docs request with 2 files
+2025-11-19 14:27:24,775 - INFO - app - Processing file: Manual.pdf
+2025-11-19 14:27:24,775 - INFO - app - Processing file: FAQ.pdf
+2025-11-19 14:27:24,775 - INFO - app - Starting ingestion for FAQ PDFs: 1 files
+2025-11-19 14:27:24,775 - INFO - app - Starting FAQ ingestion for 1 files
+2025-11-19 14:27:25,441 - INFO - app - Text split into 3 chunks
+2025-11-19 14:27:25,528 - INFO - app - File FAQ.pdf split into 3 chunks
+2025-11-19 14:27:27,105 - INFO - app - FAISS indexes and metadata saved successfully
+2025-11-19 14:27:27,105 - INFO - app - FAQ ingestion completed
+2025-11-19 14:27:27,105 - INFO - app - Finished ingestion for FAQ PDFs
+2025-11-19 14:27:27,105 - INFO - app - Starting ingestion for Manual PDFs: 1 files
+2025-11-19 14:27:27,105 - INFO - app - Starting Manual ingestion for 1 files
+2025-11-19 14:27:27,535 - INFO - app - Text split into 2 chunks
+2025-11-19 14:27:27,785 - INFO - app - File Manual.pdf split into 2 chunks
+2025-11-19 14:27:30,488 - INFO - app - FAISS indexes and metadata saved successfully
+2025-11-19 14:27:30,509 - INFO - app - Manual ingestion completed
+2025-11-19 14:27:30,510 - INFO - app - Finished ingestion for Manual PDFs
+2025-11-19 14:27:30,510 - INFO - app - File processing completed successfully
+2025-11-19 14:27:54,972 - INFO - app - Received query: can you tell me about the features
+2025-11-19 14:27:54,973 - INFO - app - Running workflow with 5 messages
+2025-11-19 14:27:56,021 - INFO - app - IntentClassifier output: faq
+2025-11-19 14:27:56,127 - INFO - app - Routing intent: faq
+2025-11-19 14:27:56,127 - INFO - app - Determined intent: faq
+2025-11-19 14:27:56,527 - INFO - app - Retrieved 4 FAQ chunks for query
+2025-11-19 14:27:58,280 - INFO - app - RAGFAQAgent answer generated
+2025-11-19 14:27:58,333 - INFO - app - FAQ Agent response generated
+2025-11-19 14:27:58,333 - INFO - app - Generated response: The platform features a modular architecture with separate modules for perception, reasoning, and action, allowing flexibility, scalability, and easier debugging. It utilizes advanced planning algorithms for task planning, breaking complex problems into smaller steps. It supports knowledge integration by connecting with LLMs, APIs, and external databases for informed decision-making. The platform also offers autonomy and adaptability, enabling agents to learn and improve, and collaborative reasoning, allowing multiple agents to communicate and share reasoning.
+2025-11-19 14:28:16,833 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 14:28:19,247 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 14:28:23,035 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 14:28:24,433 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 14:28:27,368 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 14:28:29,891 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 14:28:32,341 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 14:28:33,644 - INFO - app - Received query: no you are not giving me solution
+2025-11-19 14:28:33,644 - INFO - app - Running workflow with 7 messages
+2025-11-19 14:28:34,861 - INFO - app - IntentClassifier output: escalation
+2025-11-19 14:28:34,871 - INFO - app - Routing intent: escalation
+2025-11-19 14:28:34,871 - INFO - app - Determined intent: escalation
+2025-11-19 14:28:34,871 - INFO - app - EscalationSupervisor waiting for human agent response...
+2025-11-19 14:28:34,872 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:28:37,236 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:28:39,670 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:28:41,557 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:28:44,040 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:28:46,548 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:28:49,049 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:28:51,542 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:28:53,272 - INFO - app - Human reply received: sorry sir, we will help you
+2025-11-19 14:28:53,272 - INFO - app - Human reply added to conversation history
+2025-11-19 14:28:53,306 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:28:54,014 - INFO - app - Human agent responded
+2025-11-19 14:28:54,014 - INFO - app - Escalation Supervisor response generated
+2025-11-19 14:28:54,015 - INFO - app - Generated response: sorry sir, we will help you
+2025-11-19 14:28:54,043 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:28:59,509 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:01,540 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:04,237 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:06,606 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:09,309 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:13,230 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:14,254 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:17,344 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:19,247 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:22,535 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:24,997 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:28,306 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:29,769 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:32,257 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:35,088 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:38,472 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:40,651 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:42,373 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:44,369 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:45,602 - INFO - app - Received query: What services does your AI platform provide for e-commerce companies?
+2025-11-19 14:29:45,645 - INFO - app - Running workflow with 9 messages
+2025-11-19 14:29:46,972 - INFO - app - IntentClassifier output: escalation
+2025-11-19 14:29:47,035 - INFO - app - Routing intent: escalation
+2025-11-19 14:29:47,222 - INFO - app - Determined intent: escalation
+2025-11-19 14:29:47,378 - INFO - app - EscalationSupervisor waiting for human agent response...
+2025-11-19 14:29:47,798 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:49,230 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:52,230 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:54,247 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:58,132 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:29:59,271 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:01,589 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:06,480 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 14:30:06,489 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 14:30:07,467 - INFO - app - Database initialized successfully at tickets.db
+2025-11-19 14:30:07,467 - INFO - app - Ticket created: T-ccb669d1
+2025-11-19 14:30:07,467 - INFO - app - Ticket raised by EscalationSupervisor
+2025-11-19 14:30:07,467 - ERROR - app - Error in run_workflow: string indices must be integers
+2025-11-19 14:30:09,046 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:11,552 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:14,046 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:16,546 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:19,049 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:21,539 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:24,045 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:26,551 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:29,054 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:31,551 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:34,043 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:36,540 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:39,051 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:41,557 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:44,058 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:46,544 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:49,054 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:51,543 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:54,054 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:56,541 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:30:59,043 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:01,550 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:04,040 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:06,553 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:09,040 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:11,543 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:14,038 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:16,554 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:19,055 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:21,544 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:24,052 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:26,557 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:29,054 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:31,556 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:34,048 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:36,542 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:39,045 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:41,549 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:44,057 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:46,548 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:49,057 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:51,558 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:54,051 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:56,556 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:31:59,230 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:32:02,616 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:32:06,197 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:32:06,542 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:32:09,237 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:32:11,670 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:32:14,072 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 14:35:37,323 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 14:35:37,337 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 14:35:37,361 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 14:35:37,362 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 14:44:52,893 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 14:44:52,894 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 14:44:52,906 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 14:44:52,907 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 14:45:09,594 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 14:45:09,596 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 14:45:09,606 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 14:45:09,608 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 14:46:45,659 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 14:46:45,660 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 14:46:45,672 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 14:46:45,672 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 14:48:53,883 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 14:48:53,883 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 14:48:53,897 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 14:48:53,897 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 15:30:23,676 - INFO - app - Received upload_docs request with 2 files
+2025-11-19 15:30:23,773 - INFO - app - Processing file: Manual.pdf
+2025-11-19 15:30:23,773 - INFO - app - Processing file: FAQ.pdf
+2025-11-19 15:30:23,773 - INFO - app - Starting ingestion for FAQ PDFs: 1 files
+2025-11-19 15:30:23,773 - INFO - app - Starting FAQ ingestion for 1 files
+2025-11-19 15:30:24,427 - INFO - app - Text split into 3 chunks
+2025-11-19 15:30:24,582 - INFO - app - File FAQ.pdf split into 3 chunks
+2025-11-19 15:30:26,679 - INFO - app - FAISS indexes and metadata saved successfully
+2025-11-19 15:30:26,679 - INFO - app - FAQ ingestion completed
+2025-11-19 15:30:26,679 - INFO - app - Finished ingestion for FAQ PDFs
+2025-11-19 15:30:26,679 - INFO - app - Starting ingestion for Manual PDFs: 1 files
+2025-11-19 15:30:26,679 - INFO - app - Starting Manual ingestion for 1 files
+2025-11-19 15:30:26,848 - INFO - app - Text split into 2 chunks
+2025-11-19 15:30:26,848 - INFO - app - File Manual.pdf split into 2 chunks
+2025-11-19 15:30:27,660 - INFO - app - FAISS indexes and metadata saved successfully
+2025-11-19 15:30:27,660 - INFO - app - Manual ingestion completed
+2025-11-19 15:30:27,660 - INFO - app - Finished ingestion for Manual PDFs
+2025-11-19 15:30:27,660 - INFO - app - File processing completed successfully
+2025-11-19 15:31:07,292 - INFO - app - Received query: What services does your AI platform provide for e-commerce companies?
+2025-11-19 15:31:07,292 - INFO - app - Running workflow with 1 messages
+2025-11-19 15:31:08,557 - INFO - app - IntentClassifier output: faq
+2025-11-19 15:31:08,587 - INFO - app - Routing intent: faq
+2025-11-19 15:31:08,588 - INFO - app - Determined intent: faq
+2025-11-19 15:31:08,996 - INFO - app - Retrieved 4 FAQ chunks for query
+2025-11-19 15:31:10,644 - INFO - app - RAGFAQAgent answer generated
+2025-11-19 15:31:10,650 - INFO - app - FAQ Agent response generated
+2025-11-19 15:31:10,651 - INFO - app - Generated response: The AI platform provides the following services for e-commerce companies:
+*   Automated product tagging
+*   SEO content generation
+*   Customer query management
+*   Product recommendations using AI-driven engines
+*   Generation of marketing content such as blogs, ads, email sequences, product descriptions, and brand stories.
+*   Matching brands with relevant creators based on performance metrics, audience demographics, campaign goals, and industry categories.
+2025-11-19 15:31:47,757 - INFO - app - Received query: Why isn’t my platform processing uploaded PDFs?
+2025-11-19 15:31:47,785 - INFO - app - Running workflow with 3 messages
+2025-11-19 15:31:49,005 - INFO - app - IntentClassifier output: troubleshoot
+2025-11-19 15:31:49,005 - INFO - app - Routing intent: troubleshoot
+2025-11-19 15:31:49,005 - INFO - app - Determined intent: troubleshoot
+2025-11-19 15:31:49,393 - INFO - app - Retrieved 4 manual chunks for query
+2025-11-19 15:31:50,847 - INFO - app - TroubleshooterAgent answer generated
+2025-11-19 15:31:50,887 - INFO - app - Troubleshooter Agent response generated
+2025-11-19 15:31:50,887 - INFO - app - Generated response: I understand you're having trouble with the platform processing uploaded PDFs. Let's troubleshoot this together.
+
+The manual suggests separating general information PDFs from technical document PDFs. Please ensure that you have done this. If the issue persists, and for more specific assistance, please escalate the issue through our human support channel. We're here to help!
+2025-11-19 15:33:45,923 - INFO - app - Received query: no, its not working even after many attempts, i want a correct solution now
+2025-11-19 15:33:45,923 - INFO - app - Running workflow with 5 messages
+2025-11-19 15:33:47,417 - INFO - app - IntentClassifier output: escalation
+2025-11-19 15:33:47,441 - INFO - app - Routing intent: escalation
+2025-11-19 15:33:47,441 - INFO - app - Determined intent: escalation
+2025-11-19 15:33:47,441 - INFO - app - EscalationSupervisor waiting for human agent response...
+2025-11-19 15:33:58,847 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:01,053 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:03,553 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:06,056 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:07,656 - INFO - app - Database initialized successfully at tickets.db
+2025-11-19 15:34:09,825 - INFO - app - Ticket created: T-c0fc2935
+2025-11-19 15:34:09,825 - INFO - app - Ticket raised by EscalationSupervisor
+2025-11-19 15:34:09,825 - ERROR - app - Error in run_workflow: string indices must be integers
+2025-11-19 15:34:09,825 - INFO - app - Generated response: An error occurred. Escalating to human agent.
+2025-11-19 15:34:09,825 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:11,067 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:13,566 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:16,058 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:19,234 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:21,227 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:23,420 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:25,902 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:28,412 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:29,367 - INFO - app - Human reply received: yes sir
+2025-11-19 15:34:29,367 - INFO - app - Human reply added to conversation history
+2025-11-19 15:34:29,456 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:30,904 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:34,227 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:36,304 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:39,295 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:44,700 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:46,300 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:49,216 - INFO - app - Received query: no, its not working even after many attempts, i want a correct solution now
+2025-11-19 15:34:49,259 - INFO - app - Running workflow with 8 messages
+2025-11-19 15:34:50,628 - INFO - app - IntentClassifier output: escalation
+2025-11-19 15:34:50,652 - INFO - app - Routing intent: escalation
+2025-11-19 15:34:50,652 - INFO - app - Determined intent: escalation
+2025-11-19 15:34:50,652 - INFO - app - EscalationSupervisor waiting for human agent response...
+2025-11-19 15:34:50,653 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:51,301 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:54,240 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:56,233 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:58,035 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:34:59,871 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:01,072 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:08,724 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:10,799 - INFO - app - Database initialized successfully at tickets.db
+2025-11-19 15:35:13,055 - INFO - app - Ticket created: T-46049e0c
+2025-11-19 15:35:13,055 - INFO - app - Ticket raised by EscalationSupervisor
+2025-11-19 15:35:13,065 - ERROR - app - Error in run_workflow: string indices must be integers
+2025-11-19 15:35:13,065 - INFO - app - Generated response: An error occurred. Escalating to human agent.
+2025-11-19 15:35:13,066 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:13,653 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:16,160 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:18,670 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:25,006 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:26,231 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:29,237 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:32,153 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:34,224 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:36,229 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:39,235 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:41,237 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:44,229 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:46,228 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:49,235 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:51,235 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:54,237 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:56,231 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:35:59,230 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:01,237 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:04,235 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:06,231 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:09,231 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:11,225 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:14,246 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:16,226 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:19,224 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:21,240 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:24,242 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:36:52,847 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:37:16,202 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 15:37:16,211 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 15:37:16,243 - INFO - app - Loading FAISS index from faiss_indexes/faq.index
+2025-11-19 15:37:16,243 - INFO - app - Loading FAISS index from faiss_indexes/manual.index
+2025-11-19 15:37:30,222 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:37:31,160 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:37:37,374 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:37:40,402 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:37:43,116 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:37:46,303 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:37:47,548 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:37:50,344 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:37:52,246 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:37:59,505 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:02,861 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:05,445 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:09,646 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:12,244 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:15,800 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:17,737 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:20,645 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:22,278 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:25,368 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:30,447 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:32,330 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:35,303 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:38,293 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:38:52,275 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:39:52,735 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:40:53,190 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:41:52,287 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:42:14,153 - INFO - app - Received query: What services does your AI platform provide for e-commerce companies?
+2025-11-19 15:42:14,153 - INFO - app - Running workflow with 1 messages
+2025-11-19 15:42:15,739 - INFO - app - IntentClassifier output: faq
+2025-11-19 15:42:15,799 - INFO - app - Routing intent: faq
+2025-11-19 15:42:15,799 - INFO - app - Determined intent: faq
+2025-11-19 15:42:16,644 - INFO - app - Retrieved 4 FAQ chunks for query
+2025-11-19 15:42:18,242 - INFO - app - RAGFAQAgent answer generated
+2025-11-19 15:42:18,285 - INFO - app - FAQ Agent response generated
+2025-11-19 15:42:18,285 - INFO - app - Generated response: The AI platform provides the following services for e-commerce companies:
+*   Automated product tagging
+*   SEO content generation
+*   Customer query management
+*   Product recommendations using AI-driven engines
+*   Generation of marketing content such as blogs, ads, email sequences, product descriptions, and brand stories.
+*   Matching brands with relevant creators based on performance metrics, audience demographics, campaign goals, and industry categories.
+2025-11-19 15:42:52,235 - INFO - app - Check endpoint hit. Escalation status: False
+2025-11-19 15:42:54,289 - INFO - app - Received query: no no no its not getting solved i need human
+2025-11-19 15:42:54,316 - INFO - app - Running workflow with 3 messages
+2025-11-19 15:42:55,655 - INFO - app - IntentClassifier output: escalation
+2025-11-19 15:42:55,692 - INFO - app - Routing intent: escalation
+2025-11-19 15:42:55,693 - INFO - app - Determined intent: escalation
+2025-11-19 15:42:55,693 - INFO - app - EscalationSupervisor waiting for human agent response...
+2025-11-19 15:42:56,640 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:42:56,868 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:42:59,282 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:01,791 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:02,125 - INFO - app - Human reply received: okay
+2025-11-19 15:43:02,128 - INFO - app - Human reply added to conversation history
+2025-11-19 15:43:02,128 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:02,714 - INFO - app - Human agent responded
+2025-11-19 15:43:02,714 - INFO - app - Escalation Supervisor response generated
+2025-11-19 15:43:02,715 - INFO - app - Generated response: okay
+2025-11-19 15:43:04,441 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:07,281 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:10,530 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:12,331 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:15,332 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:16,783 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:19,291 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:21,785 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:24,298 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:26,783 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:29,295 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:31,788 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:34,297 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:36,887 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:40,248 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:42,225 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:45,234 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:47,238 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:50,238 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:52,237 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:55,243 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:43:57,242 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:00,240 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:02,232 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:05,224 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:07,243 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:10,231 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:12,242 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:15,247 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:17,223 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:20,224 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:22,226 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:25,232 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:27,230 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:30,241 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:32,229 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:35,242 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:44:52,230 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:45:52,235 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:46:52,231 - INFO - app - Check endpoint hit. Escalation status: True
+2025-11-19 15:47:52,239 - INFO - app - Check endpoint hit. Escalation status: True

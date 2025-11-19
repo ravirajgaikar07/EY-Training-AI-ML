@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="UTF-8">
+  <title>Upload Documents – SmartAssist</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="upload-wrap">
+  <div class="upload-box card">
+    <h2>Upload Your Knowledge Base</h2>
+    <p style="color:#a8b0c2;margin-bottom:20px;">
+      PDF → FAQ | TXT → Manuals
+    </p>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+
+      <label class="file-area">
+        <strong>Select Files</strong><br>
+        <span style="font-size:13px;">PDF (FAQ) and TXT (Manuals)</span>
+        <input type="file" name="files" accept=".pdf,.txt" multiple hidden>
+      </label>
+
+      <div style="margin-top:20px;">
+        <button class="btn" type="submit">Upload & Build</button>
+      </div>
+
+      <div id="loaderWrap" class="loader-wrap">
+        <div class="loader"></div>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h3>Uploaded Successfully 🎉</h3>
+    <p>Your SmartAssist is now ready.</p>
+    <a href="index.html" class="btn">Back to Home</a>
+  </div>
+</div>
+
+<script>
+document.querySelector(".file-area").addEventListener("click",()=>{
+  document.querySelector("input[type='file']").click();
+});
+
+document.getElementById("uploadForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const files = document.querySelector("input[type='file']").files;
+  if(!files.length) return alert("Please select files!");
+
+  const loader = document.getElementById("loaderWrap");
+  loader.style.display="block";
+
+  const fd = new FormData();
+  for(let f of files) fd.append("files", f);
+
+  try {
+    const res = await fetch("http://localhost:8000/upload_docs", {
+      method:"POST",
+      body:fd
+    });
+
+    loader.style.display="none";
+
+    if(!res.ok) {
+      alert("Upload failed.");
+      return;
+    }
+
+    document.getElementById("modalBackdrop").style.display="flex";
+
+  } catch(err){
+    loader.style.display="none";
+    alert("Error: "+err.message);
+  }
+});
+</script>
+
+</body>
+</html>

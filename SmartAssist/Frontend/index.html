@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartAssist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">SmartAssist</div>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#upload">Upload</a>
+    </div>
+</nav>
+
+<!-- BLUR OVERLAY -->
+<div id="blurOverlay">
+    <div class="loader"></div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <h1 class="title">SmartAssist</h1>
+    <p class="tagline">Create your own intelligent assistant in seconds </p>
+
+    <button class="btn-main" onclick="scrollToUpload()">
+        Create
+    </button>
+</section>
+
+<!-- UPLOAD SECTION -->
+<section class="upload-section" id="upload">
+    <div class="upload-box">
+
+        <h2>Upload FAQ & Manual </h2>
+
+        <input type="file" id="uploadFiles" class="file-input" multiple>
+
+        <button id="submitBtn" onclick="uploadDocs()">Submit</button>
+
+        <p id="response" class="response"></p>
+
+    </div>
+</section>
+
+
+<script>
+
+// ---------- TOAST ----------
+function showToast(msg, type="success") {
+    const toast = document.getElementById("toast");
+    toast.innerText = msg;
+
+    if (type === "error") {
+        toast.style.background = "linear-gradient(135deg, #ff6b6b, #ff8e8e)";
+    } else {
+        toast.style.background = "linear-gradient(135deg, var(--accent1), var(--accent2))";
+    }
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+}
+
+// Scroll
+function scrollToUpload(){
+    document.getElementById("upload").scrollIntoView({ behavior: "smooth" });
+}
+
+
+// ---------- UPLOAD DOCS + REDIRECT ----------
+async function uploadDocs() {
+    const files = document.getElementById("uploadFiles").files;
+    if (!files.length) {
+        showToast("Please upload a file!", "error");
+        return;
+    }
+
+    const formData = new FormData();
+    for (let file of files) {
+        formData.append("files", file);
+    }
+
+    // show blur overlay + loader
+    document.getElementById("blurOverlay").style.display = "flex";
+
+    try {
+        const res = await fetch("http://172.10.2.13:8000/upload_docs", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await res.json();
+
+        // hide blur overlay
+        document.getElementById("blurOverlay").style.display = "none";
+
+        if (data.success) {
+            showToast("Files uploaded successfully!");
+
+            // 🔥 redirect to chatbot
+            setTimeout(() => {
+                window.location.href = "chat.html";
+            }, 1200);
+
+        } else {
+            showToast("Upload failed!", "error");
+        }
+    }
+
+    catch (e) {
+        document.getElementById("blurOverlay").style.display = "none";
+        showToast("Server error!", "error");
+    }
+}
+
+</script>
+
+</body>
+</html>

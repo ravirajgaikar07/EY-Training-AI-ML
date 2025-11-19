@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartAssist Chat</title>
+    <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <div class="chat-header">
+        <div class="chat-title">SmartAssist</div>
+        <div class="chat-sub">Your AI Assistant</div>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+        <!-- CHAT MESSAGES WILL SHOW HERE -->
+    </div>
+
+    <div class="chat-input-box">
+        <input type="text" id="userMsg" placeholder="Type a message…" onkeypress="checkEnter(event)">
+        <button onclick="sendMessage()">➤</button>
+    </div>
+
+</div>
+
+
+<script>
+function cleanMarkdown(text) {
+    if (!text) return "";
+    return text
+        .replace(/\*\*(.*?)\*\*/g, "$1")   // remove **bold**
+        .replace(/\*(.*?)\*/g, "$1")       // remove *italics*
+        .replace(/`(.*?)`/g, "$1")         // remove inline code
+        .replace(/```[\s\S]*?```/g, "")    // remove code blocks
+        .replace(/#+\s/g, "")              // remove headings like ##
+        .replace(/>\s?/g, "")              // remove blockquotes
+        .trim();
+}
+// Send message
+async function sendMessage() {
+    const input = document.getElementById("userMsg");
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage("user", text);
+    input.value = "";
+
+    const payload = { query: text };
+
+    try {
+        const res = await fetch("http://172.10.2.13:8000/query", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        addMessage("agent", cleanMarkdown(data.answer));
+
+    } catch (err) {
+        addMessage("agent", "❌ Server not responding");
+    }
+}
+
+// Add bubble
+function addMessage(role, text) {
+    const box = document.createElement("div");
+    box.classList.add("bubble");
+    box.classList.add(role === "user" ? "user-bubble" : "agent-bubble");
+    box.innerText = text;
+
+    const chat = document.getElementById("chatBody");
+    chat.appendChild(box);
+
+    chat.scrollTop = chat.scrollHeight;
+}
+
+// Enter key
+function checkEnter(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+}
+
+</script>
+
+</body>
+</html>
